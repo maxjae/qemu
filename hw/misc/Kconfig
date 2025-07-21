@@ -235,4 +235,9 @@ config IOSB
 config XLNX_VERSAL_TRNG
     bool
 
+config DISAGG_FAKE_PCI
+    bool
+    default y if PCI_DEVICES
+    depends on PCI
+
 source macio/Kconfig
