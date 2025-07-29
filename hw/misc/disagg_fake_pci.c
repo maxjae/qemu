@@ -32,8 +32,6 @@ typedef PCIDeviceClass DisaggFakePCIDeviceClass;
 
 static void disagg_fake_pci_device_realize(PCIDevice *pdev, Error **errp)
 {
-    printf("Disagg_fake_pci_device_realize\n");
-
     DisaggFakePCIDevice *dev = DISAGG_FAKE_PCI(pdev);
     //PCIDeviceClass* pclass = PCI_DEVICE_GET_CLASS(pdev);
 
@@ -41,19 +39,16 @@ static void disagg_fake_pci_device_realize(PCIDevice *pdev, Error **errp)
     pci_register_bar(pdev, /* BAR nr. */ 0, PCI_BASE_ADDRESS_SPACE_MEMORY, &dev->bar0);
 }
 
-static Property disagg_fake_device_properties[] = {
+static const Property disagg_fake_device_properties[] = {
     DEFINE_PROP_UINT64("bar-size", DisaggFakePCIDevice, bar_size, 0),
 };
 
 static void disagg_fake_device_instance_init(Object *obj)
 {
-    printf("disagg_fake_device_instance_init\n");
 }
 
-static void disagg_fake_device_class_init(ObjectClass *klass, void *data)
+static void disagg_fake_device_class_init(ObjectClass *klass, const void *data)
 {
-    printf("disagg_fake_device_class_init\n");
-
     DeviceClass *dc = DEVICE_CLASS(klass);
     PCIDeviceClass *pdc = PCI_DEVICE_CLASS(klass);
 
